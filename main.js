@@ -22,6 +22,8 @@ var speed = 1.25
 
   , pl = []
 
+  , label = true
+
 
 canvas.addEventListener("click", () => {
     canvas.style.cursor = "default"
@@ -37,13 +39,13 @@ function dp()
     pl = []
     for (var i = 0; i < length; i++)
     {
-        const p = new Point(0, i*dist, "p"+i, i*size)
+        const p = new Point(0, i*dist, "point "+i, i*size)
         
         var rot = Math.sin(Date.now() * (speed/300)) * (i*change*10)
           , n = p.rotate(rot)
 
-        if (pl.length == 0) n.draw(true)
-        else                n.draw(true, pl[pl.length - 1])
+        if (pl.length == 0) n.draw(label)
+        else                n.draw(label, pl[pl.length - 1])
 
         pl.push(n)
     }
