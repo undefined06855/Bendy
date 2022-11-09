@@ -47,10 +47,14 @@ class Point {
         ctx.arc(nx, ny, this.radius, 0, 2 * Math.PI, false);
         ctx.fill();
 
-        ctx.beginPath()
-        ctx.moveTo(nx, ny)
-        ctx.lineTo(dtx, dty)
-        ctx.stroke()
+        if (lines)
+        {
+            ctx.beginPath()
+            ctx.moveTo(nx, ny)
+            ctx.lineTo(dtx, dty)
+            ctx.stroke()
+        }
+
     }
 
     rotate(angle)
