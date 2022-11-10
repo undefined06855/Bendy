@@ -23,6 +23,7 @@ var speed = 1.25
   , pl = []
 
   , label = true
+  , lines = true
 
 
 canvas.addEventListener("click", () => {
