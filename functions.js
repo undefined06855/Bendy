@@ -1,6 +1,6 @@
 function toggleMax()
 {
-    hasSecret = true
+    file.other.secretFound = !file.other.secretFound
     max++
     if (max % 2 == 0)
     {
@@ -40,15 +40,24 @@ class Point {
             , dty = (drawTo !== center ? drawTo.y + center.y : drawTo.y)
 
         ctx.beginPath();
-        if (list)
+        if (file.other.label)
         {
             ctx.font = "12px monospace"
             ctx.fillText(this.l, nx+this.radius+labelOffset, ny-this.radius+labelOffset)
         }
-        ctx.arc(nx, ny, this.radius, 0, 2 * Math.PI, false);
-        ctx.fill();
 
-        if (lines)
+        if ( !(
+                nx < 0-this.radius ||
+                nx > canvas.width + this.radius ||
+                nx < 0-this.radius ||
+                nx > canvas.height + this.radius
+            )
+        ) {
+            ctx.arc(nx, ny, this.radius, 0, 2 * Math.PI, false);
+            ctx.fill();    
+        }
+
+        if (file.other.lines)
         {
             ctx.beginPath()
             ctx.moveTo(nx, ny)
