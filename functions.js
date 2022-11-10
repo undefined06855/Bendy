@@ -1,5 +1,6 @@
 function toggleMax()
 {
+    hasSecret = true
     max++
     if (max % 2 == 0)
     {
@@ -42,7 +43,7 @@ class Point {
         if (list)
         {
             ctx.font = "12px monospace"
-            ctx.fillText(this.l, nx+6, ny-6)
+            ctx.fillText(this.l, nx+this.radius+labelOffset, ny-this.radius+labelOffset)
         }
         ctx.arc(nx, ny, this.radius, 0, 2 * Math.PI, false);
         ctx.fill();

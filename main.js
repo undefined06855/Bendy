@@ -8,7 +8,7 @@ const canvas = document.querySelector("canvas")
 
     , maxes = [
         [5, 20, 100, 5, 15],
-        [10, 100, 500, 30, 30],
+        [10, 500, 500, 30, 30],
     ]
 
 
@@ -18,6 +18,10 @@ var speed = 1.25
   , dist = 50
   , size = 2
 
+  , hasSecret = false
+
+
+  , labelOffset = 2
   , max = 0
 
   , pl = []
@@ -31,6 +35,18 @@ canvas.addEventListener("click", () => {
     document.getElementById("secretBox").style.scale = "1"
 })
 
+function exportSettings()
+{
+    const copy = `Speed: ${speed},\nLength: ${length-1},\nDistance: ${dist},\nChange: ${change},\nSize: ${size}${(()=>{var p="";if(!label){p+="\n\nWithout labels";if(!lines)p+=" and lines"}else if(!lines)p+="\n\nWithout lines";return p})()}${hasSecret?"\n\nYou may need to find a secret to be able to do these settings...":""}\n\nhttps://undefined06855.github.io/Bendy`
+
+    navigator.clipboard.writeText(copy)
+    console.log(copy)
+
+    document.querySelector("button").innerText = "Copied to clipboard!"
+    setTimeout(() => {
+        document.querySelector("button").innerText = "Export settings"
+    }, 2000)
+}
 
 // frame
 function dp()
@@ -54,7 +70,6 @@ function dp()
     requestAnimationFrame(dp)
 }
 
-
 document.getElementById("scale").addEventListener("input", () => {
     speed = Number(document.getElementById("scale").value)
     document.getElementById('scaleLabel').innerText = `Speed (${document.getElementById("scale").value}): `
@@ -65,14 +80,14 @@ document.getElementById("scale2").addEventListener("input", () => {
     document.getElementById('scaleLabel2').innerText = `Length (${document.getElementById("scale2").value}): `
 })
 
-document.getElementById("scale3").addEventListener("input", () => {
-    change = Number(document.getElementById("scale3").value)
-    document.getElementById('scaleLabel3').innerText = `Change (${document.getElementById("scale3").value}): `
-})
-
 document.getElementById("scale4").addEventListener("input", () => {
     dist = Number(document.getElementById("scale4").value)
     document.getElementById('scaleLabel4').innerText = `Distance (${document.getElementById("scale4").value}): `
+})
+
+document.getElementById("scale3").addEventListener("input", () => {
+    change = Number(document.getElementById("scale3").value)
+    document.getElementById('scaleLabel3').innerText = `Change (${document.getElementById("scale3").value}): `
 })
 
 document.getElementById("scale5").addEventListener("input", () => {
