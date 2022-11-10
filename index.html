@@ -30,6 +30,8 @@
 
             canvas {
                 background-color: #fff;
+                width: 500px;
+                height: 500px;
             }
 
             #letterCount {
@@ -75,6 +77,11 @@
             #fileInput {
                 display: none;
             }
+
+            #zoom {
+                width: 250px;
+                float: right;
+            }
         </style>
     </head>
 
@@ -82,12 +89,13 @@
         <div id="wrapper" class="column">
             <h1>Bendy</h1>
             <p>
-                You might want to use <kbd>ctrl</kbd>+<kbd>+</kbd> or <kbd>ctrl</kbd>+<kbd>-</kbd> to zoom the website in or out.
+                You might want to use <kbd>ctrl</kbd>+<kbd>+</kbd> or <kbd>ctrl</kbd>+<kbd>-</kbd> to zoom the website in or out, if it doesn't fit your screen.
             </p>
             <div class="row">
                 <div>
                     <canvas style="cursor: pointer;" width="500" height="500">Your browser does not support HTML5 canvas.</canvas>
-                    <div>500x500</div>
+                    <br/>
+                    <span><label for="zoom" id="zoomLabel">Zoom (1): </label><input type="range" max="5" min=".05" step=".05" value="1" id="zoom" /></span>
                 </div>
     
                 <div class="column evenly">
