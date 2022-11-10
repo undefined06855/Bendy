@@ -75,10 +75,6 @@
             #fileInput {
                 display: none;
             }
-
-            #filenameInput {
-                width: 70px;
-            }
         </style>
     </head>
 
@@ -95,6 +91,7 @@
                 </div>
     
                 <div class="column evenly">
+                    <span><label for="filenameInput">Filename:</label> <input type="text" id="filenameInput" value="line.bline" /></span>
                     <span><label for="scale" id="scaleLabel">Speed (1.25): </label><br/><input type="range" max="5" min=".25" step=".25" value="1.25" id="scale" /></span>
                     <span><label for="scale2" id="scaleLabel2">Length (4): </label><br/><input type="range" max="20" min="1" step="1" value="4" id="scale2" /></span>
                     <span><label for="scale4" id="scaleLabel4">Distance (50): </label><br/><input type="range" max="100" min="1" step="1" value="50" id="scale4" /></span>
@@ -106,7 +103,7 @@
 
                     <span style="scale: 0;" class="secret" id="secretBox"><input type="checkbox" id="largerCh" onchange="toggleMax()" /><label for="largerCh">Increase Maximums</label></span>
 
-                    <button onclick="exportSettings()"><input type="text" id="filenameInput" maxlength="20" value="line" />Export settings</button>
+                    <button onclick="exportSettings()">Export settings</button>
                     <button onclick="document.getElementById('fileInput').click()">Import settings</button>
                     <input type="file" id="fileInput" />
 

@@ -70,7 +70,7 @@ function downloadFile(data, filename, type) {
 
 function exportSettings()
 {
-    filename = document.getElementById("filenameInput").value + ".bline"
+    filename = document.getElementById("filenameInput").value.replace(".bline", "") + ".bline"
 
     //https://stackoverflow.com/a/30832210
     var file2 = JSON.stringify(file)
@@ -114,11 +114,12 @@ function importSettings(importer)
 
         document.getElementById("labelCh").checked = file.other.label
         document.getElementById("linesCh").checked = file.other.lines
+        document.getElementById("largerCh").checked = file.other.secretFound
     }
     reader.readAsText(f)
 }
 
-document.getElementById("file-input").addEventListener("change", importSettings, false);
+document.getElementById("fileInput").addEventListener("change", importSettings, false);
 
 // frame
 function dp()
