@@ -51,7 +51,7 @@
 
             button {
                 width: 100%;
-                height: 30px;
+                height: 60px;
             }
 
             .row {
@@ -78,9 +78,19 @@
                 display: none;
             }
 
-            #zoom {
-                width: 250px;
+            #filenameInput {
+                width: 70px;
+                text-align: right;
+            }
+
+            .rightslider {
+                width: 250px !important;
                 float: right;
+            }
+
+            .invalid {
+                font-style: italic;
+                color: #999;
             }
         </style>
     </head>
@@ -95,11 +105,11 @@
                 <div>
                     <canvas style="cursor: pointer;" width="500" height="500">Your browser does not support HTML5 canvas.</canvas>
                     <br/>
-                    <span><label for="zoom" id="zoomLabel">Zoom (1): </label><input type="range" max="5" min=".05" step=".05" value="1" id="zoom" /></span>
+                    <span><label for="zoom" id="zoomLabel">Zoom (1): </label><input type="range" max="5" min=".05" step=".05" value="1" id="zoom" class="rightslider" /></span>
                 </div>
     
                 <div class="column evenly">
-                    <span><label for="filenameInput">Filename:</label> <input type="text" id="filenameInput" value="line.bline" /></span>
+                    <span><label for="filenameInput">Filename:</label> <input type="text" id="filenameInput" value="line" /><label for="filenameInput">.bline</label></span>
                     <span><label for="scale" id="scaleLabel">Speed (1.25): </label><br/><input type="range" max="5" min=".25" step=".25" value="1.25" id="scale" /></span>
                     <span><label for="scale2" id="scaleLabel2">Length (4): </label><br/><input type="range" max="20" min="1" step="1" value="4" id="scale2" /></span>
                     <span><label for="scale4" id="scaleLabel4">Distance (50): </label><br/><input type="range" max="100" min="1" step="1" value="50" id="scale4" /></span>
@@ -110,14 +120,15 @@
                     <span><input type="checkbox" id="linesCh" onchange="file.other.lines = !file.other.lines" checked /><label for="linesCh">Lines</label></span>
 
                     <span style="scale: 0;" class="secret" id="secretBox"><input type="checkbox" id="largerCh" onchange="toggleMax()" /><label for="largerCh">Increase Maximums</label></span>
-
+                    
                     <div class="row">
+                        <button id="pausebtn">Pause</button>
                         <button onclick="exportSettings()">Export settings</button>
                         <button onclick="document.getElementById('fileInput').click()">Import settings</button>
+                        <button id="helpbtn">Help</button>
                     </div>
 
                     <input type="file" id="fileInput" accept=".bline,.json" />
-
                 </div>
             </div>
         </div>

@@ -38,17 +38,12 @@ file.line.dist = 50
 file.line.size = 2
 file.line.zoom = 1
 
+file.line.frame = -1
+file.line.playing = true
+
 file.other.secretFound = false
 file.other.label = true
 file.other.lines = true
-
-
-canvas.addEventListener("click", () => {
-    canvas.style.cursor = "default"
-    document.getElementById("secretBox").style.scale = "1"
-})
-
-document.getElementById("fileInput").addEventListener("change", importSettings, false);
 
 // frame
 function dp()
@@ -66,8 +61,14 @@ function dp()
     {
         const p = new Point(0, i*dist, "point "+i, i*size)
         
-        var rot = Math.sin(Date.now() * (speed/300)) * (i*change*10)
-          , n = p.rotate(rot)
+        if (file.line.playing)
+            var rot = Math.sin(Date.now() * (speed/300)) * (i*change*10)
+        else
+            var rot = Math.sin(file.line.frame * (speed/300)) * (i*change*10)
+        const n = p.rotate(rot)
+        
+        
+        ctx.fillStyle = `hsl(${convertTo360(n.y, -canvas.height, canvas.height)}deg, 50%, 50%)`
 
         if (pl.length == 0) n.draw(label)
         else                n.draw(label, pl[pl.length - 1])
@@ -77,6 +78,13 @@ function dp()
 
     requestAnimationFrame(dp)
 }
+
+canvas.addEventListener("click", () => {
+    canvas.style.cursor = "default"
+    document.getElementById("secretBox").style.scale = "1"
+})
+
+document.getElementById("fileInput").addEventListener("change", importSettings, false);
 
 document.getElementById("scale").addEventListener("input", () => {
     file.line.speed = Number(document.getElementById("scale").value)
@@ -112,6 +120,25 @@ document.getElementById("zoom").addEventListener("input", () => {
 
     center.x = canvas.width / 2
     center.y = canvas.height / 2
+})
+
+document.getElementById("pausebtn").addEventListener("click", () => {
+    if (file.line.playing)
+    {
+        document.getElementById("pausebtn").innerText = "Play"
+        file.line.frame = Date.now()
+    }
+    else
+    {
+        document.getElementById("pausebtn").innerText = "Pause"
+        file.line.frame = -1
+    }
+    file.line.playing = !file.line.playing
+})
+
+document.getElementById("helpbtn").addEventListener("click", () => {
+    console.log("good luck!")
+    window.location.href = "https://github.com/undefined06855/Bendy/blob/1fb17327ef372fe5a7834e02f8b3c04152193fa8/HELP.md"
 })
 
 requestAnimationFrame(dp)

@@ -1,12 +1,14 @@
 {
-    "version": 0.7,
+    "version": 0.8,
     "line": {
         "speed": 1.25,
         "length": 4,
         "dist": 50,
         "change": 0.8,
         "size": 2,
-        "zoom": 1
+        "zoom": 1,
+        "playing": true,
+        "frame: 1668186820202
     },
     "other": {
         "secretFound": false,

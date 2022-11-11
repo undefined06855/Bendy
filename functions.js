@@ -1,3 +1,5 @@
+function convertTo360( value, from, to ) { return ( value - from ) * 360 / ( to - from ) }
+
 function toggleMax()
 {
     file.other.secretFound = !file.other.secretFound
@@ -70,12 +72,14 @@ function importSettings(importer)
     reader.onload = e => {
         nf = JSON.parse(e.target.result)
 
-        file.line.speed  = nf.line.speed    || 1.25
-        file.line.length = nf.line.length   || 4
-        file.line.change = nf.line.change   || 0.8
-        file.line.dist   = nf.line.dist     || 50
-        file.line.size   = nf.line.size     || 2
-        file.line.zoom   = nf.line.zoom     || 1
+        file.line.speed   = (nf.line.speed   === undefined ? 1.25 : nf.line.speed   )
+        file.line.length  = (nf.line.length  === undefined ? 4    : nf.line.length  )
+        file.line.change  = (nf.line.change  === undefined ? 0.8  : nf.line.change  )
+        file.line.dist    = (nf.line.dist    === undefined ? 50   : nf.line.dist    )
+        file.line.size    = (nf.line.size    === undefined ? 2    : nf.line.size    )
+        file.line.zoom    = (nf.line.zoom    === undefined ? 1    : nf.line.zoom    )
+        file.line.frame   = (nf.line.frame   === undefined ? -1   : nf.line.frame   )
+        file.line.playing = (nf.line.playing === undefined ? true : nf.line.playing )
 
         document.getElementById("scale").value = nf.line.speed
         document.getElementById("scale2").value = nf.line.length
