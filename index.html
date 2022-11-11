@@ -104,15 +104,18 @@
                     <span><label for="scale2" id="scaleLabel2">Length (4): </label><br/><input type="range" max="20" min="1" step="1" value="4" id="scale2" /></span>
                     <span><label for="scale4" id="scaleLabel4">Distance (50): </label><br/><input type="range" max="100" min="1" step="1" value="50" id="scale4" /></span>
                     <span><label for="scale3" id="scaleLabel3">Change (0.8): </label><br/><input type="range" max="5" min="0" step=".1" value=".8" id="scale3" /></span>
-                    <span><label for="scale5" id="scaleLabel5">Size (2): </label><br/><input type="range" max="15" min="0" step=".1" value="2" id="scale5" /></span>
+                    <span><label for="scale5" id="scaleLabel5">Size (2n): </label><br/><input type="range" max="15" min="0" step=".1" value="2" id="scale5" /></span>
                     
                     <span><input type="checkbox" id="labelCh" onchange="file.other.label = !file.other.label" checked /><label for="labelCh">Labels</label></span>
                     <span><input type="checkbox" id="linesCh" onchange="file.other.lines = !file.other.lines" checked /><label for="linesCh">Lines</label></span>
 
                     <span style="scale: 0;" class="secret" id="secretBox"><input type="checkbox" id="largerCh" onchange="toggleMax()" /><label for="largerCh">Increase Maximums</label></span>
 
-                    <button onclick="exportSettings()">Export settings</button>
-                    <button onclick="document.getElementById('fileInput').click()">Import settings</button>
+                    <div class="row">
+                        <button onclick="exportSettings()">Export settings</button>
+                        <button onclick="document.getElementById('fileInput').click()">Import settings</button>
+                    </div>
+
                     <input type="file" id="fileInput" accept=".bline,.json" />
 
                 </div>

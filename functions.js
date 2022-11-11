@@ -68,14 +68,21 @@ function importSettings(importer)
     if (!f) return
     var reader = new FileReader()
     reader.onload = e => {
-        file = JSON.parse(e.target.result)
+        nf = JSON.parse(e.target.result)
 
-        document.getElementById("scale").value = file.line.speed
-        document.getElementById("scale2").value = file.line.length
-        document.getElementById("scale4").value = file.line.distance
-        document.getElementById("scale3").value = file.line.change
-        document.getElementById("scale5").value = file.line.size
-        document.getElementById("zoom").value = file.line.zoom
+        file.line.speed  = nf.line.speed    || 1.25
+        file.line.length = nf.line.length   || 4
+        file.line.change = nf.line.change   || 0.8
+        file.line.dist   = nf.line.dist     || 50
+        file.line.size   = nf.line.size     || 2
+        file.line.zoom   = nf.line.zoom     || 1
+
+        document.getElementById("scale").value = nf.line.speed
+        document.getElementById("scale2").value = nf.line.length
+        document.getElementById("scale4").value = nf.line.distance
+        document.getElementById("scale3").value = nf.line.change
+        document.getElementById("scale5").value = nf.line.size
+        document.getElementById("zoom").value = nf.line.zoom
 
         document.getElementById("scaleLabel").innerText = `Speed (${document.getElementById("scale").value}): `
         document.getElementById("scaleLabel2").innerText = `Length (${document.getElementById("scale2").value}): `
@@ -85,17 +92,18 @@ function importSettings(importer)
 
         document.getElementById("zoomLabel").innerText = `Zoom (${(1/document.getElementById("zoom").value).toFixed(2)}): `
 
-        document.getElementById("labelCh").checked = file.other.label
-        document.getElementById("linesCh").checked = file.other.lines
-        document.getElementById("largerCh").checked = file.other.secretFound
+        document.getElementById("labelCh").checked = nf.other.label
+        document.getElementById("linesCh").checked = nf.other.lines
+        document.getElementById("largerCh").checked = nf.other.secretFound
 
-        if (file.line.zoom)
+        nf.other.secretFound && file.other.secretFound ? "" : toggleMax()
+
+        if (nf.line.zoom)
         {
-            canvas.width = 500 * file.line.zoom
-            canvas.height = 500 * file.line.zoom
+            canvas.width = 500 * nf.line.zoom
+            canvas.height = 500 * nf.line.zoom
             center.x = canvas.width / 2
             center.y = canvas.height / 2
-    
         }
     }
     reader.readAsText(f)

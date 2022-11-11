@@ -1,6 +1,6 @@
 // yes this is built on wordToShape...
 
-const version = 0.7
+const version = 0.8
 
     , canvas = document.querySelector("canvas")
     , ctx = canvas.getContext("2d")
@@ -55,12 +55,11 @@ function dp()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    speed = file.line.speed    || 1.25
-    length = file.line.length  || 4
-    change = file.line.change  || 0.8
-    dist = file.line.dist      || 50
-    size = file.line.size      || 2
-    zoom = file.line.zoom      || 1
+    speed = file.line.speed
+    length = file.line.length
+    change = file.line.change
+    dist = file.line.dist
+    size = file.line.size
 
     pl = []
     for (var i = 0; i < length; i++)
@@ -101,7 +100,7 @@ document.getElementById("scale3").addEventListener("input", () => {
 
 document.getElementById("scale5").addEventListener("input", () => {
     file.line.size = Number(document.getElementById("scale5").value)
-    document.getElementById("scaleLabel5").innerText = `Size (${document.getElementById("scale5").value}): `
+    document.getElementById("scaleLabel5").innerText = `Size (${document.getElementById("scale5").value + "n"}): `
 })
 
 document.getElementById("zoom").addEventListener("input", () => {
